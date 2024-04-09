@@ -6,3 +6,69 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+.modal{
+  height: 300px;
+  width: 60%;
+  margin: 7% 20%;
+  display: flex;
+  justify-content: space-around;
+  flex-direction: column;
+  align-items: center;
+  border: solid 1px black;
+}
+.head{
+  background-color: black;
+  color: azure;
+  width: 100%;
+  height: 10vh;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  font-size: 30px;
+}
+.main{
+  width: 70%;
+  height: auto;
+  margin: 0 15%;
+  border: solid 1px black
+}
+.name{
+  display: flex;
+  height: 35vh;
+  border-bottom: solid 1px black;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 10px 30px;
+}
+.img{
+  background-image: url('https://i.pinimg.com/originals/a0/13/4c/a0134c74aa8b210b85874fb8314cfd3e.jpg');
+  background-size: cover;
+  border-radius: 100px;
+  width: 200px;
+  height: 200px;
+  background-position: center;
+}
+.users{
+  height: 300px;
+}
+.user{
+  height: 300px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+.pod{
+  height: 250px;
+  width: 200px;
+  border: solid 1px black;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
+.imgu{
+  height: 200px;
+  width: 200px;
+  background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQVtBI2Aa7rSt-6YNcbYFoCvRD1LbEdfwftc5cn65kHPQ&s');
+}
+

@@ -1,4 +1,5 @@
 import React, {useState} from "react";
+import { Link } from "react-router-dom";
 
 const Registr =() =>{
   const [login, setLogin] = useState('');
@@ -55,13 +56,17 @@ const prover =()=>{
 
     return(
         <div >
-
+          <div className="head">
+            <p>MNG-FIT</p>
+            <Link to="/vhod"><button>Войти</button></Link>
+        </div>
       <div className="modal">
         <input  onChange={(e) => { handlerEmail(e)}}  type="text" placeholder="login" />
         <input  onChange={(e) => { handlerPassword(e) }} value={password} type="password" placeholder="Придумайте пароль" />
         <input  onChange={(e) => { handlerrePassword(e) }} value={repassword} type="password" placeholder="Повторите пароль" />
         <button onClick={() => {avtor()}}>Зарегистрироваться</button>
       </div>
+
 
     </div>
     )

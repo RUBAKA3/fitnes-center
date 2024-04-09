@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 
 function Login() {
     const [login, setLogin] = useState('');
@@ -43,7 +44,11 @@ function Login() {
   }, [redirectToProfile]);
   return (
     <div>
-        <div className="registr">
+      <div className="head">
+            <p>MNG-FIT</p>
+            <Link to="/register"><button>Зарегистрироваться</button></Link>
+        </div>
+        <div className="modal">
         
         <input onChange={(e) => { handlerEmail(e) }} value={login} type="text" placeholder="login" />
         <input onChange={(e) => { handlerPassword(e) }} value={password} type="password" placeholder="password" />
