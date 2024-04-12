@@ -14,7 +14,7 @@ function App() {
     <BrowserRouter>
     <div className="App">
       <Routes>
-        <Route path="vhod" element={<Login/>}/>
+        <Route path="login" element={<Login/>}/>
         <Route path="register" element={<Registr/>}/>
         <Route path="admin" element={<Admin/>}/>
         <Route path="user" element={<User/>}></Route>

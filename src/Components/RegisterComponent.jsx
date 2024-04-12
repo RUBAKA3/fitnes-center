@@ -3,15 +3,18 @@ import { Link } from "react-router-dom";
 
 const Registr =() =>{
   const [login, setLogin] = useState('');
+  const [email, setEmail]=useState('');
   const [password, setPassword] = useState('');
   const [repassword, setRepassword] = useState("")
   const [obj, setObj] = useState({});
   
-
-  const handlerEmail = (e) => {
+  
+  const handlerLogin = (e) => {
     setLogin(e.target.value);
   };
-
+  const handlerEmail = (e) => {
+    setEmail(e.target.value);
+  };
   const handlerPassword = (e) => {
     setPassword(e.target.value);
   };
@@ -24,6 +27,7 @@ const Registr =() =>{
     setObj((prevObj) => ({
       ...prevObj,
       login: login,
+      email:email,
       password: password,
       repassword: repassword
     }));
@@ -58,10 +62,11 @@ const prover =()=>{
         <div >
           <div className="head">
             <p>MNG-FIT</p>
-            <Link to="/vhod"><button>Войти</button></Link>
+            <Link to="/login"><button>Войти</button></Link>
         </div>
       <div className="modal">
-        <input  onChange={(e) => { handlerEmail(e)}}  type="text" placeholder="login" />
+        <input  onChange={(e) => { handlerLogin(e)}}  type="text" placeholder="login" />
+        <input onChange={(e)=>{handlerEmail(e)}} type="text" placeholder="email" />
         <input  onChange={(e) => { handlerPassword(e) }} value={password} type="password" placeholder="Придумайте пароль" />
         <input  onChange={(e) => { handlerrePassword(e) }} value={repassword} type="password" placeholder="Повторите пароль" />
         <button onClick={() => {avtor()}}>Зарегистрироваться</button>

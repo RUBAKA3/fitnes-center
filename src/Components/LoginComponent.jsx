@@ -17,16 +17,17 @@ function Login() {
   };
   const zapis = () => {
     if (login !== "" && password !== "") {
-      fetch('http://localhost:8000/api/vhod', {
+      fetch('http://127.0.0.1:8000/api/login', {
         method: "POST",
         headers: {
           "Content-Type": "application/json"
         },
-        body: JSON.stringify({ name: login, password: password })
+        body: JSON.stringify({ email: login, password: password })
       })
       .then(response => response.json())
       .then(data => {
-        localStorage.setItem("api_token",data.data.user_token);
+        localStorage.setItem("api_token",data.token);
+        console.log(data.token)
         setRedirectToProfile(true);
       })
       .catch(error => {
@@ -39,7 +40,7 @@ function Login() {
   };
   useEffect(() => {
     if (redirectToProfile) {
-      window.location.href = "/profile";
+      window.location.href = "/user";
     }
   }, [redirectToProfile]);
   return (

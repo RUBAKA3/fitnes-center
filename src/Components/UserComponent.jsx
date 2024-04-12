@@ -10,6 +10,7 @@ function User() {
     <div>
         <div className="head">
             <p>MNG-FIT</p>
+            <a href="/login"><button>Выйти</button></a>
         </div>
         <div className="main">
             <div className="name">
