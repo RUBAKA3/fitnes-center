@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import { Link } from "react-router-dom";
 
 const Registr =() =>{
@@ -6,7 +6,7 @@ const Registr =() =>{
   const [email, setEmail]=useState('');
   const [password, setPassword] = useState('');
   const [repassword, setRepassword] = useState("")
-  const [obj, setObj] = useState({});
+  const [redirectToProfile, setRedirectToProfile] = useState(false);
   
   
   const handlerLogin = (e) => {
@@ -24,39 +24,56 @@ const Registr =() =>{
 
 
   const avtor = () => {
-    setObj((prevObj) => ({
-      ...prevObj,
-      login: login,
-      email:email,
-      password: password,
-      repassword: repassword
-    }));
-    prover(password,repassword)
+    prover(login,password,repassword)
+    if (login !== "" && password !== "" && email !=="") {
+      fetch('http://127.0.0.1:8000/api/register', {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({ email: email,name:login, password: password })
+      })
+      .then(response => response.json())
+      .then(data => {
+        console.log(data.email)
+        //  setRedirectToProfile(true);
+      })
+      .catch(error => {
+        console.error('Произошла ошибка:', error);
+      });
+    } else {
+      alert("Необходимо ввести логин и пароль");
+    }
+    setEmail('')
     setLogin(''); 
   setPassword(''); 
   setRepassword('');
 }
 const prover =()=>{
-  if(login.length>3){
-    if(!(/^.*[0-9].*/).exec(password)){
-      alert("Добавьте цифру в ваш пароль")
-    }
-    else{
-      if(!(/^.*[A-ZА-Я].*/).exec(password)){
-        alert("Добавьте заглавную букву в ваш пароль")
-      }else{
-        if (!(/^(?=.*[0-9])(?=.*[!@#$%^&*])/.test(password))) {
-          alert("Добавьте цифру и спец символ в ваш пароль");
-        }else{ 
-          if(password===repassword){
+  // if(login.length>1){
+  //   if(!(/^.*[0-9].*/).exec(password)){
+  //     alert("Добавьте цифру в ваш пароль")
+  //   }
+  //   else{
+  //     if(!(/^.*[A-ZА-Я].*/).exec(password)){
+  //       alert("Добавьте заглавную букву в ваш пароль")
+  //     }else{
+  //       if (!(/^(?=.*[0-9])(?=.*[!@#$%^&*])/.test(password))) {
+  //         alert("Добавьте цифру и спец символ в ваш пароль");
+  //       }else{ 
+  //         if(password===repassword){
             
-            }else(alert("Пароли не совпадают"))
-        }
-      }
-    }}else(alert("Имя пользователя слишком маленькое"))
+  //           }else(alert("Пароли не совпадают"))
+  //       }
+  //     }
+  //   }}else(alert("Имя пользователя слишком маленькое"))
     
 }
-
+useEffect(() => {
+  if (redirectToProfile) {
+    window.location.href = "/login";
+  }
+}, [redirectToProfile]);
 
     return(
         <div >

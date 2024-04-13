@@ -40,7 +40,7 @@ function Login() {
   };
   useEffect(() => {
     if (redirectToProfile) {
-      window.location.href = "/user";
+      window.location.href = "/admin";
     }
   }, [redirectToProfile]);
   return (
