@@ -27,8 +27,12 @@ function Login() {
       .then(response => response.json())
       .then(data => {
         localStorage.setItem("api_token",data.token);
-        console.log(data.token)
-        setRedirectToProfile(true);
+        localStorage.setItem("user_role", data.role);
+        if(data.token!==undefined){
+          console.log(data.role)
+          setRedirectToProfile(true);
+        }
+
       })
       .catch(error => {
         console.error('Произошла ошибка:', error);
@@ -40,7 +44,13 @@ function Login() {
   };
   useEffect(() => {
     if (redirectToProfile) {
-      window.location.href = "/admin";
+      const userRole = localStorage.getItem("user_role");
+            if (userRole === "1") {
+                window.location.href = "/admin";
+            } else {
+                window.location.href = "/user";
+            }
+  
     }
   }, [redirectToProfile]);
   return (

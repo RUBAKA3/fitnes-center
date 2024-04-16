@@ -3,6 +3,7 @@ import Registr from "./Components/RegisterComponent";
 import Login from "./Components/LoginComponent";
 import Admin from "./Components/AdminComponent";
 import User from "./Components/UserComponent";
+import Aboniment from "./Components/AbonimentCompoinent";
 
 
 function App() {
@@ -18,6 +19,7 @@ function App() {
         <Route path="register" element={<Registr/>}/>
         <Route path="admin" element={<Admin/>}/>
         <Route path="user" element={<User/>}></Route>
+        <Route path="aboniment" element={<Aboniment/>}></Route>
       </Routes>
     </div>
     </BrowserRouter>
