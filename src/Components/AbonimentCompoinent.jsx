@@ -13,7 +13,7 @@ function Aboniment() {
             <p>MNG-FIT</p>
             <div style={{height:'70px', width:'150px', display:'flex', justifyContent:'space-between', alignItems:'center'}}>
             <Link to="/user"><button>Профиль</button></Link>
-            <Link to="/login"><button>Выйти</button></Link>
+            <Link to="/"><button>Выйти</button></Link>
             </div>
             
         </div>

@@ -5,6 +5,7 @@ function Admin() {
   const [users, setUsers] = useState([]);
   const token = localStorage.getItem('api_token');
   const [role, setRole] = useState('');
+  const [userName, setUserName] = useState('');
 
   const handlerRole = (e) => {
     setRole(e.target.value);
@@ -23,7 +24,7 @@ function Admin() {
         // Execute these actions after successful logout response
         localStorage.removeItem('api_token');
         localStorage.removeItem('user_role');
-        window.location.href = "/login";
+        window.location.href = "/";
       })
       .catch(error => {
         console.error('Произошла ошибка:', error);
@@ -72,7 +73,22 @@ function Admin() {
     }
     setRole('');
   }
-
+  const thisName = () => {
+    fetch('http://127.0.0.1:8000/api/thisuser', {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({ token: token })
+    })
+      .then(response => response.json())
+      .then(data => {
+        setUserName(data); // Обновление состояния имени пользователя
+      })
+      .catch(error => {
+        console.error('An error occurred while fetching users:', error);
+      });
+  };
   // Function to update the user list
   const updateUserList = () => {
     fetch('http://127.0.0.1:8000/api/allUsers', {
@@ -85,6 +101,7 @@ function Admin() {
       .then(response => response.json())
       .then(data => {
         setUsers(data);
+        console.log(userName)
       })
       .catch(error => {
         console.error('An error occurred while fetching users:', error);
@@ -92,19 +109,20 @@ function Admin() {
   };
 
   useEffect(() => {
-    // Fetch initial user list
-    updateUserList();
+    thisName()
+    updateUserList()
   }, []);
   return (
     <div>
       <div className="head">
         <p>MNG-FIT</p>
-        <Link to="/login"><button onClick={logout}>Выйти</button></Link>
+        <Link to="/"><button onClick={logout}>Выйти</button></Link>
+        
       </div>
       <div className="main">
         <div className="name">
           <div className="img"></div>
-          <h1>Степан Джаваскриптер</h1>
+          <h1>{userName.name}</h1>
         </div>
         <div className="users">
           <h1 align='center'>Пользователи</h1>

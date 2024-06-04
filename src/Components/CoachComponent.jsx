@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
-function User() {
+function Coach() {
     const token = localStorage.getItem('api_token');
     const [userName, setUserName] = useState('');
     let logout = () => {
@@ -40,19 +40,18 @@ function User() {
             console.error('An error occurred while fetching users:', error);
           });
       };
-  
       useEffect(() => {
         thisName()
       }, []);
   return (
-    <div className="">
+    <div>
         <div className="head">
-        <p className="plogo">MNG-FIT</p>
-        <div className="head-home" style={{justifyContent:"flex-start"}}>
-          <a href="/zapic"><h6 style={{margin:"20px"}}>РАСПИСАНИЕ</h6></a>
-
+        <p>MNG-FIT</p>
+        <div style={{height:'50px', width:'200px', display:'flex', justifyContent:'space-between'}}>
+        <Link to="/zapic"><button>Записи</button></Link>
+        <Link to="/"><button onClick={logout}>Выйти</button></Link>
         </div>
-        <Link to="/login" style={{textDecoration:"none"}}><button className="red-button" style={{fontSize:'16px',}} onClick={logout}>ВЫЙТИ</button></Link>
+        
       </div>
         <div className="main">
             <div className="name">
@@ -60,12 +59,10 @@ function User() {
                 <h1>{userName.name}</h1>
             </div>
             <div className="user">
-                
-              
             </div>
         </div>
     </div>
   );
 }
 
-export default User;
+export default Coach;

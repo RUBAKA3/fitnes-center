@@ -46,25 +46,26 @@ const Registr = () => {
 
   }
 
-  useEffect(() => {
-    // Redirect to login page after successful registration
-    if (redirectToProfile) {
-      window.location.href = "/login";
-    }
-  }, [redirectToProfile]);
+ 
 
   return (
-    <div>
+    <div className="login">
       <div className="head">
-        <p>MNG-FIT</p>
-        <Link to="/login"><button>Log In</button></Link>
+        <Link to="/"><p className="plogo">MNG-FIT</p></Link>
+        <Link to="/login" style={{textDecoration:"none"}}><button className="red-button" style={{fontSize:'16px'}}>ВОЙТИ</button></Link>
       </div>
+      <div className="login-block">
+      <h1 style={{color:"#ffffff", marginTop:"58px", marginBottom:"50px", fontSize:"48px",filter: "drop-shadow(2px 10px 2px  rgba(120, 75, 75))"}}>Регистрация</h1>
       <div className="modal">
-        <input onChange={handlerLogin} type="text" placeholder="Username" />
-        <input onChange={handlerEmail} type="text" placeholder="Email" />
+        <input onChange={handlerLogin} value={login} type="text" placeholder="Username" />
+        <input onChange={handlerEmail} value={email} type="text" placeholder="Email" />
         <input onChange={handlerPassword} value={password} type="password" placeholder="Create Password" />
-        <button onClick={registerUser}>Register</button>
+
+        
+        <button className="red-button" style={{width:"388px", fontSize:"18px", border:"solid black 1px",height: "50px",  marginTop: "28px"}} onClick={registerUser}>ЗАРЕГИСТРИРОВАТЬСЯ</button>
       </div>
+      </div>
+      
     </div>
   );
 }

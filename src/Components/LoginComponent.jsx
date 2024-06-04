@@ -44,23 +44,33 @@ function Login({ user, setUser }) {
       const userRole = localStorage.getItem("user_role");
       if (userRole === "1") {
         window.location.href = "/admin";
-      } else {
+      } if(userRole=== "3") {
         window.location.href = "/user";
+      }if(userRole=== "2"){
+        window.location.href = "/trener"
       }
     }
   }, [redirectToProfile]);
 
   return (
-    <div>
+    <div className="login">
       <div className="head">
-        <p>MNG-FIT</p>
-        <Link to="/register"><button>Зарегистрироваться</button></Link>
+        <Link to="/"><p className="plogo">MNG-FIT</p></Link>
+        <Link to="/register" style={{textDecoration:"none"}}><button className="red-button" style={{fontSize:'16px'}}>ЗАРЕГИСТРИРОВАТЬСЯ</button></Link>
       </div>
-      <div className="modal">
-        <input onChange={(e) => { handlerEmail(e) }} value={login} type="text" placeholder="login" />
-        <input onChange={(e) => { handlerPassword(e) }} value={password} type="password" placeholder="password" />
-        <button onClick={() => { zapis() }}>Войти</button>
+      <div className="login-block">
+        <h1 style={{color:"#ffffff", marginTop:"58px", marginBottom:"50px", fontSize:"48px",filter: "drop-shadow(2px 10px 2px  rgba(120, 75, 75))"}}>Авторизация</h1>
+        <div className="modal">
+          <input style={{marginTop:"80px"}} onChange={(e) => { handlerEmail(e) }} value={login} type="text" placeholder="login" />
+          <div>
+            <input onChange={(e) => { handlerPassword(e) }} value={password} type="password" placeholder="password" />
+            <a href="" style={{color:"black"}}><p style={{margin:"0", fontSize:"12px"}}>Забыли пароль?</p></a>
+          </div>
+          
+          <button className="red-button" style={{width:"395px", fontSize:"24px", border:"solid black 1px",   marginTop: "28px"}} onClick={() => { zapis() }}>Войти</button>
+        </div>
       </div>
+      
     </div>
   );
 }
