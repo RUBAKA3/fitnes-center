@@ -1,14 +1,17 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { useState } from "react";
 import Registr from "./Components/RegisterComponent";
 import Login from "./Components/LoginComponent";
 import Admin from "./Components/AdminComponent";
 import User from "./Components/UserComponent";
 import Aboniment from "./Components/AbonimentCompoinent";
 import PrivetRoute from "./Route/PrivetRoute";
-import { useState } from "react";
+
 import Coach from "./Components/CoachComponent";
 import Zapic from "./Components/ZapicComponent";
 import Home from "./Components/HomeComponent";
+import Raspis from "./Components/RaspisComponent";
+
 
 function App() {
   const [user, setUser] = useState(localStorage.getItem('api_token')||false);
@@ -25,6 +28,7 @@ function App() {
             <Route path="trener" element={<Coach/>}/>
             <Route path="zapic" element={<Zapic/>}/>
           </Route>
+          <Route path="raspisanie" element={<Raspis/>}/>
           <Route path="aboniment" element={<Aboniment/>}/>
           <Route path="/" element={<Home/>}/>
           <Route path="login" element={<Login user={user} setUser={setUser}/>}/>

@@ -115,11 +115,12 @@ function Admin() {
   return (
     <div>
       <div className="head">
-        <p>MNG-FIT</p>
-        <Link to="/"><button onClick={logout}>Выйти</button></Link>
-        
-      </div>
-      <div className="main">
+          <Link to="/"><p className="plogo">MNG-FIT</p></Link>
+          <div className="head-home" style={{justifyContent:"flex-start"}}>
+          </div>
+          <Link to="/login" style={{textDecoration:"none"}}><button className="red-button" style={{fontSize:'16px',}} onClick={logout}>ВЫЙТИ</button></Link>
+        </div>
+      <div className="main" style={{ minHeight:'89.5vh'}}>
         <div className="name">
           <div className="img"></div>
           <h1>{userName.name}</h1>
@@ -133,13 +134,13 @@ function Admin() {
                   <h3>{user.name}</h3>
                   <p>{user.role_id === 2 ? ' тренер' : user.role_id === 3 ? 'пользователь' : 'Администратор'}</p>
                 </div>
-                <div>
+                <div className="admin-panel">
                   {/* Показывать кнопку "Удалить" только для пользователей с ролью 3 (пользователь) */}
                   { user.role_id === 3? <input type="text" onChange={(e) => { handlerRole(e)}} placeholder="Номер роли"/>:''}
                   { user.role_id === 2? <input type="text" onChange={(e) => { handlerRole(e)}} placeholder="Номер роли"/>:''}
-                  { user.role_id === 3? <button onClick={() => newRole(user.id)} style={{ backgroundColor: "purple" }}>Поменять</button>:''}
-                  { user.role_id === 2? <button onClick={() => newRole(user.id)} style={{ backgroundColor: "purple" }}>Поменять</button>:''}                  
-                  {user.role_id === 3 ? <button onClick={() => deleteUser(user.id)} style={{ backgroundColor: "red" }}>Удалить</button>:''}
+                  { user.role_id === 3? <button onClick={() => newRole(user.id)} style={{ backgroundColor: "#009FF9" }}>Поменять</button>:''}
+                  { user.role_id === 2? <button onClick={() => newRole(user.id)} style={{ backgroundColor: "#009FF9" }}>Поменять</button>:''}                  
+                  { user.role_id === 3? <button onClick={() => deleteUser(user.id)} style={{ backgroundColor: "red" }}>Удалить</button>:''}
                   { user.role_id === 2? <button onClick={() => deleteUser(user.id)} style={{ backgroundColor: "red" }}>Удалить</button>:''}
 
                 </div>

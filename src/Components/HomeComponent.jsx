@@ -1,11 +1,45 @@
-import React from "react";
+import React, { useRef, useState } from "react";
 import { Link } from "react-router-dom";
 
 
 function Home() {
   let token=localStorage.getItem("api_token")
   let role =localStorage.getItem("user_role")
+  const [name,setName]=useState('')
+  const [number, setNumber]=useState('')
+  const [quest,setQuest]=useState('')
   console.log(token)
+  let send = () => {
+    // Make a request to logout endpoint, e.g., invalidate session/token
+    fetch('http://127.0.0.1:8000/api/send-email', {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({ number: number, name:name,question:quest })
+    })
+      .then(response => response.json())
+      .then(data => {
+        // Execute these actions after successful logout response
+
+      })
+      .catch(error => {
+        console.error('Произошла ошибка:', error);
+      });
+      setName('');
+    setNumber('');
+    setQuest('');
+    alert('Ваша заявка отправленна, скоро с вами свяжуться')
+  }
+  const handlerName = (e) => {
+    setName(e.target.value);
+  };
+  const handlerNumber = (e) => {
+    setNumber(e.target.value);
+  };
+  const handlerQuest = (e) => {
+    setQuest(e.target.value);
+  };
   return (
     <div className="home">
       <div className="head">
@@ -13,10 +47,10 @@ function Home() {
         <div className="head-home">
           <h6>Пермь</h6>
           <a href="/aboniment"><h6>АБОНИМЕНТЫ</h6></a>
-          <a href="/zapic"><h6>РАСПИСАНИЕ</h6></a>
+          <a href="/raspisanie"><h6>РАСПИСАНИЕ</h6></a>
           <a href="#contact"><h6>КОНТАКТЫ</h6></a>
         </div>
-        {token ===null?<Link to="/login" style={{textDecoration:"none"}}><button className="red-button" style={{fontSize:'16px',}}>ВОЙТИ</button></Link>: role==3?<Link to='/user'><button className="red-button"style={{fontSize:'16px',}}>Профиль</button></Link>:<Link to='/trener'><button className="red-button"style={{fontSize:'16px',}}>Профиль</button></Link> }
+        {token ===null?<Link to="/login" style={{textDecoration:"none"}}><button className="red-button" style={{fontSize:'16px',}}>ВОЙТИ</button></Link>: role==3?<Link to='/user'><button className="red-button"style={{fontSize:'16px',}}>Профиль</button></Link>:role==2?<Link to='/trener'><button className="red-button"style={{fontSize:'16px',}}>Профиль</button></Link>: <Link to='/admin'><button className="red-button"style={{fontSize:'16px',}}>Профиль</button></Link>}
         
       </div>
       <div className="s1">
@@ -28,7 +62,7 @@ function Home() {
           <div className="s1-bl-rigth">
             <p>Клиентский сервис:</p>
             <h2>+7 (800) 000 00 00</h2>
-            <p>-----------------------------------------------------</p>
+            <hr style={{color:"#fffffff", width:"250px",margin:"0 0 10px 0", border:"1px solid #ffffff"}}/> 
             <p>Часы работы клуба:</p>
             <div className="s1-block-r-b">
               <div className="s1-block-time-left">
@@ -129,10 +163,11 @@ function Home() {
           <div className="s4-form">
             <h1 style={{fontSize:"36px"}}>Узнать больше</h1>
             <div className="s4-input">
-              <input type="text" placeholder="Ваше имя" />
-              <input type="text" placeholder="Контактный телефон"/>
+              <input type="text" placeholder="Ваше имя" onChange={(e) => { handlerName(e) }} value={name}/>
+              <input type="text" placeholder="Контактный телефон" onChange={(e) => { handlerNumber(e) }} value={number}/>
+              <input type="text" placeholder="Ваш вопрос" style={{height:"120px"}} onChange={(e) => { handlerQuest(e) }} value={quest}/>
             </div>
-            <button className="red-button" style={{width:"100%", fontSize:"16px", height:"50px"}}>Отправить заявку</button>
+            <button className="red-button" style={{width:"100%", fontSize:"16px", height:"50px"}} onClick={()=>{send()}}>Отправить заявку</button>
           </div>
         </div>
       </div>

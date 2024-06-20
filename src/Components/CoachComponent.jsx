@@ -46,13 +46,12 @@ function Coach() {
   return (
     <div>
         <div className="head">
-        <p>MNG-FIT</p>
-        <div style={{height:'50px', width:'200px', display:'flex', justifyContent:'space-between'}}>
-        <Link to="/zapic"><button>Записи</button></Link>
-        <Link to="/"><button onClick={logout}>Выйти</button></Link>
+          <Link to="/"><p className="plogo">MNG-FIT</p></Link>
+          <div className="head-home" style={{justifyContent:"flex-start"}}>
+            <a href="/zapic"><h6 style={{margin:"20px"}}>ЗАПИСИ</h6></a>
+          </div>
+          <Link to="/login" style={{textDecoration:"none"}}><button className="red-button" style={{fontSize:'16px',}} onClick={logout}>ВЫЙТИ</button></Link>
         </div>
-        
-      </div>
         <div className="main">
             <div className="name">
                 <div className="img"></div>
